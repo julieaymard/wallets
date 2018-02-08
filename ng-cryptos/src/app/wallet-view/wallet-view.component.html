@@ -1,0 +1,50 @@
+<html>
+<p>
+  <br>
+  <br>
+  ***** MONEY MOVEMENTS *****    <button id = "loading" (click)="loadPrices()"> Load Prices!</button>
+
+<div>
+  <table>
+    <!-- Loop in pseudo Html -->
+    <th> Amount </th>   <th> Currency </th>   <th> Eq. Dollars </th>
+    <tr *ngFor="let line of wallet.lines" [style.color]="getColor(line.symbol)">
+      <td>{{line.quantity }}</td> <td>{{line.symbol}}</td> <td>{{line.value}}</td> </tr>
+  </table>
+  <br>
+
+  TOTAL : $ {{wallet.totalDollarValue().toPrecision(5)}}
+</div>
+<p>
+  <input type="number" #amount>
+
+
+  <button (click)="deposit(amount.value)"> Deposit!</button>
+  <!--<button (click)="withdrawal(amount.value)"> Withdrawal!</button>-->
+
+</p>
+
+<br>
+
+
+***** BUY OTHER CRYPTOS *****
+<br>
+
+
+Quantity: <input type="number" #quantity>
+Symbol :<input #symbol>
+<button (click)="buy(quantity.value, symbol.value)"> Buy </button>
+
+<br>
+<br>
+<br>
+***** SELL OTHER CRYPTOS *****
+<br>
+Quantity: <input type="number" #stock>
+Symbol :<input #symbol2>
+<button (click)="sell(stock.value, symbol2.value)"> Sell </button>
+
+<br><br><br><br><br>
+</html>
+
+

@@ -1,0 +1,16 @@
+table{
+  text-align : center;
+  background-color : lightgrey;
+  font-variant: small-caps;
+  border: double;
+}
+
+table th {
+  font-variant: small-caps;
+  border: dotted;
+}
+
+table td {
+  font-variant: small-caps;
+  border: dotted;
+}

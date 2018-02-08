@@ -1,0 +1,40 @@
+button{
+  background-color: cadetblue;
+}
+
+ul {
+  border : double;
+  list-style: none;
+  width: 350px;
+
+}
+
+ul li:nth-child(even){
+ background-color: lightgrey;
+
+}
+
+#loading{
+  background-color : antiquewhite;
+  border-color: cadetblue;
+}
+
+table {
+  border: medium solid cadetblue;
+  text-align: center;
+  width: 50em;
+}
+
+td{
+  background-color: antiquewhite;
+}
+
+th {
+  background-color: cadetblue;
+}
+
+html{
+  background-color: aliceblue;
+}
+
+
