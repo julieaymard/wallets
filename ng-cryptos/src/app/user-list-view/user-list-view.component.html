@@ -1,6 +1,22 @@
 <html>
+<div *ngIf ="!selectedUser">
+  Please choose a user
+</div>
+<div>
+  <ul>
+    <li *ngFor="let user of users">
+      <a href="#{{user.id}}" (click) = "details(user)">{{user.name}} #{{user.id}}</a>
 
-<p>
-  user-list-view works!
-</p>
+
+  </ul>
+
+</div>
+
+<div *ngIf="selectedUser">
+  <h3> User details : {{selectedUser.name}}  </h3>
+  <ol>
+    <li *ngFor="let wallet of selectedUser.wallets"> {{wallet.name}}
+  </ol>
+  <br>
+</div>
 </html>
