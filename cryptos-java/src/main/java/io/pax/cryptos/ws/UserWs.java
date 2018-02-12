@@ -1,9 +1,7 @@
 package io.pax.cryptos.ws;
 
 import io.pax.cryptos.dao.UserDao;
-import io.pax.cryptos.domain.FullUser;
-import io.pax.cryptos.domain.User;
-import io.pax.cryptos.domain.Wallet;
+import io.pax.cryptos.domain.*;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -45,6 +43,7 @@ public class UserWs {
         }
         try {
             int id = new UserDao().createUser(user.getName());
+
 
             return new FullUser(id, user.getName(), user.getWallets());
         } catch (SQLException e) {

@@ -41,10 +41,12 @@ public class WalletWs {
 
             User boundUser = wallet.getUser();
             SimpleUser simpleUser = new SimpleUser(boundUser.getId(), boundUser.getName());
-            return new FullWallet(id, wallet.getName(), simpleUser );
+
+            return new FullWallet(id, wallet.getName(), simpleUser);
         } catch (SQLException e) {
-            throw new ServerErrorException("Database error, sorry",500);
+            throw new ServerErrorException("Database error, sorry", 500);
         }
     }
-
 }
+
+
