@@ -8,6 +8,11 @@ public class SimpleWallet implements Wallet {
     String name;
 
 
+    //useless constructor but for java EE
+    public SimpleWallet(){
+
+    }
+
     public SimpleWallet(int id, String name) {
         this.id = id;
         this.name = name;
@@ -26,6 +31,10 @@ public class SimpleWallet implements Wallet {
     @Override
     public String getName() {
         return this.name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override public String toString(){

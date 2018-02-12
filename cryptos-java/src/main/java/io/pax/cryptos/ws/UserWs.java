@@ -1,12 +1,11 @@
 package io.pax.cryptos.ws;
 
 import io.pax.cryptos.dao.UserDao;
+import io.pax.cryptos.domain.FullUser;
 import io.pax.cryptos.domain.User;
+import io.pax.cryptos.domain.Wallet;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.sql.SQLException;
 import java.util.List;
@@ -17,6 +16,8 @@ import java.util.List;
 
 @Path("users")
 @Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
+
 
 public class UserWs {
     @GET
@@ -32,5 +33,22 @@ public class UserWs {
 
         return new UserDao().findUserWithWallet(userId);
 
+    }
+
+    @POST
+    /*return future user with an id*/
+    public User createWallet(FullUser user /* sent wallet, has no idea*/) {
+        List<Wallet> wallets = user.getWallets();
+
+        if (user.getName().length() < 2) {
+            throw new NotAcceptableException("406: User name must have at least 2 letters");
+        }
+        try {
+            int id = new UserDao().createUser(user.getName());
+
+            return new FullUser(id, user.getName(), user.getWallets());
+        } catch (SQLException e) {
+            throw new ServerErrorException("Database error, sorry",500);
+        }
     }
 }

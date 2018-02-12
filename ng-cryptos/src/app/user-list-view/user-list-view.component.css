@@ -9,6 +9,7 @@ h3{
 
 ul {
   list-style: circle;
+
 }
 
 ol{
@@ -18,4 +19,12 @@ ol{
 a{
   text-decoration: none ;
   color : black;
+}
+
+button {
+  border-radius: 12px;
+}
+
+button:hover {
+ background-color: antiquewhite;
 }

@@ -2,18 +2,36 @@
 <div>
   <ul>
     <li *ngFor="let user of users">
-      <a href="#{{user.id}}" (click) = "details(user)">{{user.name}} #{{user.id}}</a>
+      <a href="#{{user.id}}" (click)="details(user)">{{user.name}}</a>
 
 
   </ul>
 
 </div>
 
+<input type="text" name="userName" placeholder="add a new user"  [(ngModel)]="createdUser.name">
+<button (click)="createUser()" [disabled]="createdUser.name?.length<2" > Add!</button>
+
+
+
+
 <div *ngIf="selectedUser">
-  <h3> User details : {{selectedUser.name}}  </h3>
+  <h3> User details : {{selectedUser.name}} </h3>
   <ol>
     <li *ngFor="let wallet of selectedUser.wallets"> {{wallet.name}}
   </ol>
   <br>
+
+  <h3>Create new wallet : {{selectedUser.name}}</h3>
+  <form>
+    <input type="text" name="walletName" placeholder="create a new wallet"
+           [(ngModel)]="createdWallet.name" (click)="createdWallet.name =''">
+    <button (click)="createWallet()" [disabled]="createdWallet?.name.length<2"> Submit!</button>
+
+<br/>
+    </form>
 </div>
+<br/>
+
+
 </html>

@@ -40,5 +40,42 @@ export class DataService {
         return data as User
       })
   }
+
+  createWallet(wallet: Wallet) {
+    let url = ('http://localhost:8080/cryptos/api/wallets')
+    // dto = data transfer object : aux petits oignons pour Jax B
+    let dto = {
+      name: wallet.name,
+      user: wallet.user
+    };
+
+    console.log('sending wallet:', dto);
+
+    return this.http.post(url, dto)
+      .toPromise()
+      .then(data => console.log('Success :)', data))
+    //.catch (e => console.error('Fail :(', e));
+
+  }
+
+  createUser(user: User) {
+    let url = ('http://localhost:8080/cryptos/api/users')
+    // dto = data transfer object : aux petits oignons pour Jax B
+    let dto = {
+      name: user.name,
+      id: user.id
+    };
+
+    console.log('sending user:', dto);
+
+    return this.http.post(url, dto)
+      .toPromise()
+      .then(data => console.log('Success :)', data))
+    //.catch (e => console.error('Fail :(', e));
+
+  }
+
 }
+
+
 

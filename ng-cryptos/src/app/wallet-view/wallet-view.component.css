@@ -1,5 +1,10 @@
 button{
   background-color: cadetblue;
+  border-radius: 12px;
+}
+
+button:hover{
+  background-color: antiquewhite;
 }
 
 ul {
@@ -18,6 +23,10 @@ ul li:nth-child(even){
   background-color : antiquewhite;
   border-color: cadetblue;
 }
+#loading:hover{
+  background-color : cadetblue;
+}
+
 
 table {
   border: medium solid cadetblue;

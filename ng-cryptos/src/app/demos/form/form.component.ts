@@ -8,7 +8,7 @@ import {Component, OnInit} from '@angular/core';
 export class FormComponent implements OnInit {
   formModel = {
     name: '',
-    limit: 9000
+    limit: 9000,
     level: 'Noob - 0 -'
   };
 
