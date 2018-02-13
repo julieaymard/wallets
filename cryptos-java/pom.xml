@@ -29,6 +29,12 @@
             <!-- quand provided : already included in the server; needed for the IDE/compiler-->
         </dependency>
 
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>4.3.6.Final</version>
+        </dependency>
+
     </dependencies>
 
     <!-- artefact-->

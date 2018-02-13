@@ -2,6 +2,7 @@ package io.pax.cryptos.ws;
 
 import io.pax.cryptos.dao.UserDao;
 import io.pax.cryptos.domain.*;
+import io.pax.cryptos.domain.jdbc.FullUser;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
