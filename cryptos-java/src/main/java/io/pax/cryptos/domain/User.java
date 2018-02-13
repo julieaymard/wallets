@@ -9,4 +9,5 @@ public interface User {
     int getId();
     String getName();
     List<Wallet> getWallets();
+
 }

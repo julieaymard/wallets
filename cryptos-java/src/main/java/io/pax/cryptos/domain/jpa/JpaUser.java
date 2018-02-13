@@ -50,4 +50,9 @@ public class JpaUser implements User {
     public void setWallets(List<Wallet> wallets) {
         //this.wallets = wallets;
     }
+
+    @Override
+    public String toString(){
+        return this.getName();
+    }
 }
