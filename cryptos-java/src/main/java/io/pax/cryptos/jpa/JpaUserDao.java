@@ -2,6 +2,7 @@ package io.pax.cryptos.jpa;
 
 import io.pax.cryptos.domain.User;
 import io.pax.cryptos.domain.jpa.JpaUser;
+import io.pax.cryptos.domain.jpa.JpaWallet;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -21,6 +22,12 @@ public class JpaUserDao {
         em.getTransaction().begin();
 
         em.persist(user);
+
+        JpaWallet defaultWallet = new JpaWallet();
+        defaultWallet.setName(name + "'s wallet");
+        em.persist(defaultWallet);
+
+        user.getWallets().add(defaultWallet);
 
         em.getTransaction().commit();
         System.out.println("User id:" + user.getId());
@@ -45,16 +52,15 @@ public class JpaUserDao {
 
         //JPQL :Java Persistence Query Language
         TypedQuery<JpaUser> query = em.createQuery("SELECT u FROM JpaUser u WHERE u.name = :pName", JpaUser.class);
-        query.setParameter("pName",name);
+        query.setParameter("pName", name);
         List<JpaUser> users = query.getResultList();
         em.getTransaction().commit();
         em.close();
-        if (users.size()>0){
+        if (users.size() > 0) {
             return users.get(0);
-        }else
-            {
-                return null;
-            }
+        } else {
+            return null;
+        }
     }
 
     public void deleteByName(String name) {
@@ -63,10 +69,10 @@ public class JpaUserDao {
 
         //JPQL :Java Persistence Query Language
         TypedQuery<JpaUser> query = em.createQuery("SELECT u FROM JpaUser u WHERE u.name = :pName", JpaUser.class);
-        query.setParameter("pName",name);
+        query.setParameter("pName", name);
         List<JpaUser> users = query.getResultList();
 
-        for (User u : users){
+        for (User u : users) {
             em.remove(u);
         }
         em.getTransaction().commit();
@@ -76,13 +82,13 @@ public class JpaUserDao {
     public static void main(String[] args) {
         JpaUserDao dao = new JpaUserDao();
 
-        System.out.println("name avec id = 1"+dao.find(1));
-        System.out.println("Jean ="+dao.findByName("Jean"));
+//        System.out.println("name avec id = 1" + dao.find(1));
+//        System.out.println("Jean =" + dao.findByName("Jean"));
+//
+//        System.out.println("delete Arthur");
+        //dao.deleteByName("Arthur");
 
-        System.out.println("delete Arthur");
-       dao.deleteByName("Arthur");
-
-       // dao.createUser("Arthur");
+        dao.createUser("Antoine");
 
         //end of the program
         dao.connector.close();
