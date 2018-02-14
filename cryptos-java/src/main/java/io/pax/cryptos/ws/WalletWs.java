@@ -1,11 +1,13 @@
 package io.pax.cryptos.ws;
 
 import io.pax.cryptos.dao.WalletDao;
-import io.pax.cryptos.domain.jdbc.FullWallet;
-import io.pax.cryptos.domain.jdbc.SimpleUser;
 import io.pax.cryptos.domain.User;
 import io.pax.cryptos.domain.Wallet;
+import io.pax.cryptos.domain.jdbc.FullWallet;
+import io.pax.cryptos.domain.jdbc.SimpleUser;
+import io.pax.cryptos.jpa.JpaWalletDao;
 
+import javax.naming.NamingException;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.sql.SQLException;
@@ -20,10 +22,15 @@ import java.util.List;
 public class WalletWs {
 
     @GET
-    public List<Wallet> getWallets() throws SQLException {
+    public List<Wallet> getWallets() throws SQLException, NamingException {
         WalletDao dao = new WalletDao();
-        return dao.listWallets();
 
+        return dao.listWallets();
+    }
+
+    @Path ("{id}")
+    public Wallet getWallet(@PathParam("id") int walletId){
+        return new JpaWalletDao().getWallet(walletId);
     }
 
     @POST
