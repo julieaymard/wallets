@@ -30,6 +30,8 @@ public class JpaWalletDao {
 
         System.out.println(lines);
 
+        w.setLines(lines);
+
         em.getTransaction().commit();
         em.close();
         return w;
@@ -38,7 +40,7 @@ public class JpaWalletDao {
     public static void main(String[] args) {
         JpaWalletDao dao = new JpaWalletDao();
         JpaWallet wallet = dao.getWallet(1);
-        System.out.println(wallet);
+        System.out.println(wallet.getLines());
         dao.connector.close();
     }
 

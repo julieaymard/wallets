@@ -28,6 +28,7 @@ public class WalletWs {
         return dao.listWallets();
     }
 
+    @GET
     @Path ("{id}")
     public Wallet getWallet(@PathParam("id") int walletId){
         return new JpaWalletDao().getWallet(walletId);
