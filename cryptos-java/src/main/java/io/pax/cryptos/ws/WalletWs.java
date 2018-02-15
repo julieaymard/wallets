@@ -6,6 +6,7 @@ import io.pax.cryptos.domain.User;
 import io.pax.cryptos.domain.Wallet;
 import io.pax.cryptos.domain.jdbc.FullWallet;
 import io.pax.cryptos.domain.jdbc.SimpleUser;
+import io.pax.cryptos.domain.jpa.JpaWallet;
 
 import javax.ejb.EJB;
 import javax.naming.NamingException;
@@ -36,7 +37,11 @@ public class WalletWs {
     @Path("{id}")
     public Wallet getWallet(@PathParam("id") int walletId) {
 
-      return  walletBusiness.findWallet(walletId);
+      JpaWallet wallet = walletBusiness.findWallet(walletId);
+
+      // cutting circular reference
+      wallet.getLines().stream().forEach(jpaLine -> jpaLine.setWallet(null));
+      return wallet;
     }
 
 
